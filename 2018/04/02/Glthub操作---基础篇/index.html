@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在学过后写一篇文章真的是特别有好处的一件事，这种复盘是最有效的。言归正传，这两天一直在不停地试验github，今天终于有时间写一篇总结。我过两天会在写一个原理篇，剖析一下暂存区这些基本原理方面的问题，今天的文章主要是复盘一下操作。 Glthub是什么这个我就不说太多了，做程序方面工作的几乎没有不认识它的吧。粗浅的认知就把他当做是一个可多人协同开发且能帮你托管放置源码的“服务器”吧。当然它不仅仅如此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glthub操作---基础篇">
+<meta property="og:url" content="http://yoursite.com/2018/04/02/Glthub操作---基础篇/index.html">
+<meta property="og:site_name" content="Hexoblog">
+<meta property="og:description" content="在学过后写一篇文章真的是特别有好处的一件事，这种复盘是最有效的。言归正传，这两天一直在不停地试验github，今天终于有时间写一篇总结。我过两天会在写一个原理篇，剖析一下暂存区这些基本原理方面的问题，今天的文章主要是复盘一下操作。 Glthub是什么这个我就不说太多了，做程序方面工作的几乎没有不认识它的吧。粗浅的认知就把他当做是一个可多人协同开发且能帮你托管放置源码的“服务器”吧。当然它不仅仅如此">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-542b45850e2b5d96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-891ed7e22eb31c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-feed57cbba315305.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-30b528b5c522afcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-799f338efc15bf2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-542b45850e2b5d96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-891ed7e22eb31c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-02T08:57:32.829Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glthub操作---基础篇">
+<meta name="twitter:description" content="在学过后写一篇文章真的是特别有好处的一件事，这种复盘是最有效的。言归正传，这两天一直在不停地试验github，今天终于有时间写一篇总结。我过两天会在写一个原理篇，剖析一下暂存区这些基本原理方面的问题，今天的文章主要是复盘一下操作。 Glthub是什么这个我就不说太多了，做程序方面工作的几乎没有不认识它的吧。粗浅的认知就把他当做是一个可多人协同开发且能帮你托管放置源码的“服务器”吧。当然它不仅仅如此">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7921365-542b45850e2b5d96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/02/Glthub操作---基础篇/"/>
+
+
+
+
+
+  <title>Glthub操作---基础篇 | Hexoblog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexoblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/Glthub操作---基础篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mammon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexoblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Glthub操作---基础篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T12:32:29+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学过后写一篇文章真的是特别有好处的一件事，这种复盘是最有效的。言归正传，这两天一直在不停地试验github，今天终于有时间写一篇总结。我过两天会在写一个原理篇，剖析一下暂存区这些基本原理方面的问题，今天的文章主要是复盘一下操作。</p>
+<h1 id="Glthub是什么"><a href="#Glthub是什么" class="headerlink" title="Glthub是什么"></a>Glthub是什么</h1><p>这个我就不说太多了，做程序方面工作的几乎没有不认识它的吧。粗浅的认知就把他当做是一个可多人协同开发且能帮你托管放置源码的“服务器”吧。当然它不仅仅如此而已。<br>写代码这件事并不轻松，多人一起开发就更不简单了，github主要就是为了解决多人开发时的不足，比如今天A改了b页面，明天C改了d页面，来来回回最后谁也不知道自己改了什么，合并起来一团糟，github快照技术就可以解决多人协作开发的大问题。当然这就是最终的核心目标—代码管理</p>
+<h1 id="主要操作步骤"><a href="#主要操作步骤" class="headerlink" title="主要操作步骤"></a>主要操作步骤</h1><p>如果我想建立一个仓库，主要操作方法有两种，我个人比较喜欢后者。</p>
+<h4 id="第一种："><a href="#第一种：" class="headerlink" title="第一种："></a>第一种：</h4><p>（1）打开github页面新建一个仓库<br>（2）<img src="http://upload-images.jianshu.io/upload_images/7921365-542b45850e2b5d96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击绿色的新建一个">名字就是项目名称<br>（3）<img src="http://upload-images.jianshu.io/upload_images/7921365-891ed7e22eb31c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里要打勾"><br>（4）这时候远端就建立了一个新的仓库了。只不过你本地端还没有<br>（5）打开git输入以下命令<br><code>git config --global user.name &quot;XXX&quot;</code><br><code>git config --global user.email&quot; XXX@.com&quot;</code><br>输入这些是为了今后你在修改代码上传后记录会有你的名字和邮箱<br>你可以输入<code>git config -l</code>就可以查询到相关参数了<br>当然如果你后期需要修改邮箱和名字直接输入<code>git config --global XXX</code>替换就好了。</p>
+<h2 id="重点：因为你本地端与远端没有一个对应的连接，为了让它们产生匹配（就跟密码狗一样）你需要有个密码钥匙，github会生成出2个密码钥匙，一个远端一个本地端，相互对应你就可以操作了和上传了。"><a href="#重点：因为你本地端与远端没有一个对应的连接，为了让它们产生匹配（就跟密码狗一样）你需要有个密码钥匙，github会生成出2个密码钥匙，一个远端一个本地端，相互对应你就可以操作了和上传了。" class="headerlink" title="重点：因为你本地端与远端没有一个对应的连接，为了让它们产生匹配（就跟密码狗一样）你需要有个密码钥匙，github会生成出2个密码钥匙，一个远端一个本地端，相互对应你就可以操作了和上传了。"></a>重点：因为你本地端与远端没有一个对应的连接，为了让它们产生匹配（就跟密码狗一样）你需要有个密码钥匙，github会生成出2个密码钥匙，一个远端一个本地端，相互对应你就可以操作了和上传了。</h2><p>（6）设置区找到ssh<br><img src="http://upload-images.jianshu.io/upload_images/7921365-feed57cbba315305.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ssh命令行"><br>直接复制粘贴在git上输入<code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code>这个邮箱名称输入你注册github的。<br>（7）一路回车（一般我不修改ssh文件的生成地址）直到出现下图的样子<br><img src="http://upload-images.jianshu.io/upload_images/7921365-30b528b5c522afcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="加密文件生成成功"><br>（8）git下输入cat命令打开ssh后缀为pub的公钥文件并把语句复制下来存放在下图位置<br><img src="http://upload-images.jianshu.io/upload_images/7921365-799f338efc15bf2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击新建即可"><br>这时你的电脑便与远端建立了密码对应关系，就可以克隆你之前在远端建立的仓库到本地端了。<br>（9）命令行输入<code>git clone git地址</code>这里输入ssh对应的地址，此时便建立了权限<br>（10）新建文件撸代码<br>（11）命令行分别输入 <code>git add .</code> <code>git commit -am &quot;写描述&quot;</code> <code>git push origin master</code>代表把master分支推送至本地端和远端来源，origin就是远端的来源</p>
+<h4 id="第二种："><a href="#第二种：" class="headerlink" title="第二种："></a>第二种：</h4><p>（1）打开github页面新建一个仓库<br>（2）<img src="http://upload-images.jianshu.io/upload_images/7921365-542b45850e2b5d96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击绿色的新建一个">名字就是项目名称<br>（3）<img src="http://upload-images.jianshu.io/upload_images/7921365-891ed7e22eb31c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里不要打勾">注意不要打钩<br>（4）在本地你可以建立文件夹（仓库），建立一些文件（撸代码的产物），打开git，输入<code>git config --global user.name &quot;名字&quot;`</code>git config –global user,email “邮箱”<code>（5）</code>git init<code>建立.git初始化本地仓库
+（6）</code>git remote add origin gitXXX(ssh地址)<code>这样便建立了对应关系
+注意：如果没有创建公钥私钥，还是要按照方法一中的办法建立密码对应联系
+（7）</code>git add .<code></code>git commit -am “miaoshu”<code></code>git push origin master`就可以上传成功了。<br>以上就是建立仓库并进行简单的修改上传的操作步骤。</p>
+<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><h1 id="额外的命令行"><a href="#额外的命令行" class="headerlink" title="额外的命令行"></a>额外的命令行</h1><p>本篇因为是基础篇，所以不涉及太多额外的命令行，只介绍了一些常用的用于复盘。</p>
+<ol>
+<li><code>git config -l</code>：可以查看相关参数，例如上传时对应的邮箱和名字<br>2.<code>git remote -v</code>:用于查看地址别名（来源）对应的地址<br>3.<code>git remote add 别名 ssh地址</code>用于建立远端别名与地址的对应关系 。例：<code>git remote add origin2 git@xxx.com</code><br>4.<code>git remote rename 原来源 新来源</code>例：<code>git remote rename origin2 glob1</code>此命令将把origin2替换成glob1的来源<br>5.<code>git remote remove 来源</code> 例：<code>git remote remove glob1</code> 此命令将删除该来源以及所对应的地址<br>6.<code>git remote set-url 标签 地址</code>例：<code>git remote set-url glob1 git@qq.com</code>此命令将会修改glob1标签所对应的地址<br>7.<code>git config --global &quot;user.name&quot; XX`</code>git config –global “user.email” XX<code>这个命令只需要输入一次就可以了，以后每次上传都会自动记录这些信息，但是如果你某个项目中突然想用别的名字或邮箱，但是别的项目都不变，那么你只需要在上传该项目之前输入这个命令，但是切记不需要加</code>–global<code>即可
+8.mkdir -p &quot;/cmdd/dec/&quot;
+注：(不加引号也可成功，但是如果你建立的文件夹有特殊符号例如空格，就要引起来让bash明白你建立的是一个整体
+9.</code>whoami<code>可以查看本机用户名是什么
+10.</code>touch<code>可以改变文件的时间
+11.</code>curl -L 链接地址 &gt; 文件名<code>下载文件
+12.</code>wget -p -H -e robots=off 链接地址` 下载整站（当前页面）</li>
+</ol>
+<p>先更新到这里，以后用到了陆续在更，目前这些已经基本够用。 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/十五分钟学会Bash命令行/" rel="next" title="十五分钟学会Bash命令行">
+                <i class="fa fa-chevron-left"></i> 十五分钟学会Bash命令行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mammon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Glthub是什么"><span class="nav-number">1.</span> <span class="nav-text">Glthub是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主要操作步骤"><span class="nav-number">2.</span> <span class="nav-text">主要操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">第一种：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重点：因为你本地端与远端没有一个对应的连接，为了让它们产生匹配（就跟密码狗一样）你需要有个密码钥匙，github会生成出2个密码钥匙，一个远端一个本地端，相互对应你就可以操作了和上传了。"><span class="nav-number">2.1.</span> <span class="nav-text">重点：因为你本地端与远端没有一个对应的连接，为了让它们产生匹配（就跟密码狗一样）你需要有个密码钥匙，github会生成出2个密码钥匙，一个远端一个本地端，相互对应你就可以操作了和上传了。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种："><span class="nav-number">2.1.0.1.</span> <span class="nav-text">第二种：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支操作"><span class="nav-number">3.</span> <span class="nav-text">分支操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#额外的命令行"><span class="nav-number">4.</span> <span class="nav-text">额外的命令行</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mammon</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

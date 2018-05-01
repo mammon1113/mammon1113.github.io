@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CSS的全称层叠样式表(英文全称：Cascading Style Sheets)样式定义如何显示Html元素，样式通常储存在样式表。实现了内容与样式相分离。123456789h1 &amp;#123;  color: red;  font-size: 20px;  /*这是注释*/&amp;#125;a:hover&amp;#123;  color: red;&amp;#125;  CSS的引入方式 内联样式将css内容写进需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexoblog">
+<meta property="og:url" content="http://yoursite.com/2018/05/01/初探css/index.html">
+<meta property="og:site_name" content="Hexoblog">
+<meta property="og:description" content="CSS的全称层叠样式表(英文全称：Cascading Style Sheets)样式定义如何显示Html元素，样式通常储存在样式表。实现了内容与样式相分离。123456789h1 &amp;#123;  color: red;  font-size: 20px;  /*这是注释*/&amp;#125;a:hover&amp;#123;  color: red;&amp;#125;  CSS的引入方式 内联样式将css内容写进需要">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-d7e9e0742059a505.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-2fd4ea8033c4204f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-bb9c52754ac2922a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-24T15:42:06.379Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexoblog">
+<meta name="twitter:description" content="CSS的全称层叠样式表(英文全称：Cascading Style Sheets)样式定义如何显示Html元素，样式通常储存在样式表。实现了内容与样式相分离。123456789h1 &amp;#123;  color: red;  font-size: 20px;  /*这是注释*/&amp;#125;a:hover&amp;#123;  color: red;&amp;#125;  CSS的引入方式 内联样式将css内容写进需要">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7921365-d7e9e0742059a505.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/01/初探css/"/>
+
+
+
+
+
+  <title> | Hexoblog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexoblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/01/初探css/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mammon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexoblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-01T23:28:54+08:00">
+                2018-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CSS的全称"><a href="#CSS的全称" class="headerlink" title="CSS的全称"></a>CSS的全称</h1><p>层叠样式表(英文全称：Cascading Style Sheets)<br>样式定义如何显示Html元素，样式通常储存在样式表。实现了内容与样式相分离。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">h1 &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  font-size: <span class="number">20</span>px;</span><br><span class="line">  <span class="comment">/*这是注释*/</span></span><br><span class="line">&#125;</span><br><span class="line">a:hover&#123;</span><br><span class="line">  color: red;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7921365-d7e9e0742059a505.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="css格式"></p>
+<h1 id="CSS的引入方式"><a href="#CSS的引入方式" class="headerlink" title="CSS的引入方式"></a>CSS的引入方式</h1><ul>
+<li>内联样式<br>将css内容写进需要渲染的标签中<br><code>&lt;h1 style=&quot;color: red; font-size: 20px;&quot;&gt;&lt;/h1&gt;</code><br>一般来说很少会采用这种方式去写css。<br>首先，代码将会变得冗长，不利于维护，也无法实现html与css相互分离的特点。其次相同的样式不能统一引用，将降低效率。</li>
+<li>内部样式（嵌入式）<br>将css样式写入style标签中，放在页面里。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=<span class="string">"text/css"</span>&gt;</span><br><span class="line">  h1 &#123;</span><br><span class="line">    color: red;</span><br><span class="line">    font-size: <span class="number">20</span>px;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通常会将内部样式放入head当中，这种引入比较适合单页面，可以一目了然地查看 HTML 结构和 CSS 样式。但是写入的css样式也仅仅对其本身页面有效，不利于多页面开发，且内部样式结构将会使代码过长，不利于阅读和维护。</p>
+<ul>
+<li>外部样式<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;link rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> href=<span class="string">"index.css"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>将样式独立出来并通过寻址来进行引用的方式，这种引入方式不仅结构清晰，html/css相互独立相互分离，且让开发人员可以多次重复利于同一css文件进行开发，减少了代码冗余，利于维护。这种方式也是目前css引入的主流方式，推荐使用。</p>
+<ul>
+<li>导入样式<pre><code class="javascript">&lt;style&gt;
+@<span class="keyword">import</span> url(<span class="string">"hello.css"</span>);
+@<span class="keyword">import</span> <span class="string">"world.css"</span>;
+&lt;<span class="regexp">/style&gt;</span>
+</code></pre>
+导入样式有如上两种方式的写法。这与外部样式（导入样式也是外部样式的一种）本质上很相似，都是通过外部的css文件来进行渲染。但是会有所差别。<br>区别：<br>（1）加载快慢的区别：<br>通常HTML加载的同时，将会同时下载css进行渲染，但是@import方式则会等待页面全部加载完毕后，在进行下载。所以如果页面采用@import的方式进行渲染，用户网络条件不好时将有可能会导致页面渲染不完全、失败、闪烁等情况。<br>（2）兼容性的区别：<br>link标签本身无兼容性问题。然而@import是 CSS2.1 才出现的概念，低版本浏览器可能会出现不支持的现象，无法正确导入外部样式文件。不过，现在的主流浏览器版本基本都不会出现无法正确加载的现象了。<br>（3）范围的区别：<br>link是XHTML标签，除了加载css之外，还可以定义RSS等其他内容。@import只能写入css样式。<br>（4）DOM控制区别：<br>dom无法直接控制@import，只能通过控制link实现加载不同css文件<br>总结：一般使用外部样式。其他三种用的很少，并不建议直接使用。<h1 id="css引入路径的正确写法："><a href="#css引入路径的正确写法：" class="headerlink" title="css引入路径的正确写法："></a>css引入路径的正确写法：</h1>这里又要说到相对路径与绝对路径了。<br>1、相对路径：相对于当前文件的路径。<br>2、绝对路径：是目录在硬盘上真正的路径。<br>“./“：代表目前所在的目录。<br>“../“：代表上一层目录。<br>以”/“开头：代表根目录。<br>如果非要去举例的话..小黄pian的存储地址从头到尾你无不烂熟于心，那个地址就是绝对路径，没跑了。闭着眼睛你都知道在哪个地方存着。<br>但是在css引用中，通常用到相对路径与http外部链接路径（网站路径）<br>以外部方式为例，简单的说下关于href的规则。<br><img src="http://upload-images.jianshu.io/upload_images/7921365-2fd4ea8033c4204f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内容区块"><br>不难看出，根目录下有S1文件夹和Image/Image.jpg，S1内有P1.html文件和S2文件夹。S2下有P2.html和P2.Img文件。<br>1、文件在当前目录:<br>P2.html访问P2.Img<br><code>&lt;link rel=&quot;stylesheet&quot;  href=”./Page2Image.jpg”&gt;
+或者
+&lt;link rel=&quot;stylesheet&quot; href=”./Page2Image. jpg”&gt;</code><br>2、文件在上一层目录<br>P1.html访问Image下的Image.jpg<br><code>&lt;link rel=&quot;stylesheet&quot;  href=”../Image/Image.jpg”&gt;</code><br>P2.html访问Image下的Image.jpg<br><code>&lt;link rel=&quot;stylesheet&quot;  href=”../../Image/Image.jpg”&gt;</code><br>3、文件在下一层目录<br>P1.html访问S2文件夹下的P2.Img<br><code>&lt;link rel=&quot;stylesheet&quot;  href=”./S2/P2.Img”&gt;</code><br><code>&lt;link rel=&quot;stylesheet&quot;  href=”S2/P2.Img”&gt;</code><br>为何要花那么多笔墨说这些是因为相对路径和绝对路径还是蛮重要的，尤其是当页面引入很多图片和链接的时候，很容易出错。<br>总结一下</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>含义  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>css/a.css</td>
+<td>当前css目录下的a.css文件（相对路径）</td>
+</tr>
+<tr>
+<td>./css/a.css</td>
+<td>当前css目录下的a.css文件（相对路径）</td>
+</tr>
+<tr>
+<td>b.css</td>
+<td>当前css目录下的b.css文件（相对路径）</td>
+</tr>
+<tr>
+<td>../imgs/a.png</td>
+<td>父目录下（上一个目录）的imgs目录中的a.png文件  </td>
+</tr>
+<tr>
+<td>/Users/hunger/project/css/a.css</td>
+<td>根目录下的users…的a.css文件（绝对路径）</td>
+</tr>
+<tr>
+<td>/static/css/a.css</td>
+<td>会获取到网站根目录下的static目录–&gt;css目录–&gt;a.css文件（多用于服务器中的static目录）  </td>
+</tr>
+<tr>
+<td><a href="http://cdn.jirengu.com/kejian1/8-1.png" target="_blank" rel="noopener">http://cdn.jirengu.com/kejian1/8-1.png</a></td>
+<td>外部链接地址（通过http协议寻址到某服务器中的文件）  </td>
+</tr>
+</tbody>
+</table>
+<h1 id="如何加载图片"><a href="#如何加载图片" class="headerlink" title="如何加载图片"></a>如何加载图片</h1><p>还是路径的问题。<br>1.可以将图片上传至服务器端，通过相对路径引用到img标签当中。<br>2.可以将图片上传至图床中，生成出网站链接地址，将该url引入到img的src属性中。</p>
+<p># </p>
+<h1 id="html和css的书写规范"><a href="#html和css的书写规范" class="headerlink" title="html和css的书写规范"></a>html和css的书写规范</h1><p>1.css中语法使用小写，缩写<br>2.id和class使用有意义的单词，分隔符建议使用-<br>3.属性值是0的省略单位<br>4.属性名冒号后面添加一个空格(属性值前面)<br>5.属性与属性之间要有分号，最好换号书写<br>6.meta标签中的编码格式建议使用 “UTF-8”<br>7.html5的声明类型为&lt;!DOCTYPE html&gt;要注意该大写的最好大写<br>8.css选择器 与 { 之间要有空格<br>更多可参考<a href="http://www.jianshu.com/p/6b4321d1828f" title="Title" target="_blank" rel="noopener">HTML简介篇</a></p>
+<h1 id="开发者工具"><a href="#开发者工具" class="headerlink" title="开发者工具"></a>开发者工具</h1><p>作为一名前端开发人员，这是必须掌握的一项实用技术，用起来极其方便。<br>通常调试css的时候也经常用到，说一些最近常用的技巧。<br>1.选中styles中的某项需要调节的css属性，切换属性值即可看到页面的变化，这是学习css的最好途径，看起来也很直观。<br>2.调节像素的时候可以选中该样式按住”alt”+“上或下”即可调节。<br>3.console控制台我想经常会用到，但是介绍一个更好地调试方法。<br><img src="http://upload-images.jianshu.io/upload_images/7921365-bb9c52754ac2922a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>这里测试js代码会更轻松。<br><a href="http://www.jianshu.com/p/07ce3cb6798c" title="Title" target="_blank" rel="noopener">开发者工具篇</a><br><a href="http://www.jianshu.com/p/cf36d48652f4" title="Title" target="_blank" rel="noopener">备查</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/13/HTML(2)/" rel="next" title="HTML(2)">
+                <i class="fa fa-chevron-left"></i> HTML(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mammon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS的全称"><span class="nav-number">1.</span> <span class="nav-text">CSS的全称</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS的引入方式"><span class="nav-number">2.</span> <span class="nav-text">CSS的引入方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#css引入路径的正确写法："><span class="nav-number">3.</span> <span class="nav-text">css引入路径的正确写法：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何加载图片"><span class="nav-number">4.</span> <span class="nav-text">如何加载图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#html和css的书写规范"><span class="nav-number">5.</span> <span class="nav-text">html和css的书写规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发者工具"><span class="nav-number">6.</span> <span class="nav-text">开发者工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mammon</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

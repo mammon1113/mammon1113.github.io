@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="类型的转换1.任何类型转字符串 (toString方法)  数字转字符串12var n = 55n.toString() // &apos;55&apos;   全局方法// &apos;55&apos;```1234* 布尔转字符串```javascriptvar n = truen.toString() // &amp;apos;true&amp;apos;  null不能转，没有toString方法 undefined不能读toString属性，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexoblog">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/JS里的类型/index.html">
+<meta property="og:site_name" content="Hexoblog">
+<meta property="og:description" content="类型的转换1.任何类型转字符串 (toString方法)  数字转字符串12var n = 55n.toString() // &apos;55&apos;   全局方法// &apos;55&apos;```1234* 布尔转字符串```javascriptvar n = truen.toString() // &amp;apos;true&amp;apos;  null不能转，没有toString方法 undefined不能读toString属性，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-8bdd424967d0d282.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-8e0865a65dd3f175.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-39ed9177dcda3f5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-a61976544d7614e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-f680d8e41a708471.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-890d1f343b8d52cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-fa0e6f026e9b4d8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-dd85aa887bb547fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-872090df9e28d470.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-583b6fd0cee2ba18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-bfacd2965258cfa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-c3e09876aad1fd03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-23T13:07:39.596Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexoblog">
+<meta name="twitter:description" content="类型的转换1.任何类型转字符串 (toString方法)  数字转字符串12var n = 55n.toString() // &apos;55&apos;   全局方法// &apos;55&apos;```1234* 布尔转字符串```javascriptvar n = truen.toString() // &amp;apos;true&amp;apos;  null不能转，没有toString方法 undefined不能读toString属性，">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7921365-8bdd424967d0d282.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/JS里的类型/"/>
+
+
+
+
+
+  <title> | Hexoblog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexoblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mammon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexoblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T21:07:39+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="类型的转换"><a href="#类型的转换" class="headerlink" title="类型的转换"></a>类型的转换</h1><p>1.任何类型转字符串 (toString方法)</p>
+<ul>
+<li>数字转字符串<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">55</span></span><br><span class="line">n.toString() <span class="comment">// '55'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>全局方法<figure class="highlight plain"><figcaption><span>// '55'```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* 布尔转字符串</span><br><span class="line">```javascript</span><br><span class="line">var n = true</span><br><span class="line">n.toString() // &apos;true&apos;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>null不能转，没有toString方法</li>
+<li><p>undefined不能读toString属性，所以不能转<br><img src="http://upload-images.jianshu.io/upload_images/7921365-8bdd424967d0d282.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>object转字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'liu'</span>&#125;</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">obj.toString() <span class="comment">// "[object Object]"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/7921365-8e0865a65dd3f175.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>转字符串最简便的方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="string">''</span>   <span class="comment">// '1'</span></span><br><span class="line"><span class="literal">true</span> + <span class="string">''</span> <span class="comment">// 'true'</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">obj + <span class="string">''</span>  <span class="comment">// '&#123;object object&#125;'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/7921365-39ed9177dcda3f5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>任何类型（包括null/undefined）+空字符串（’ ‘）即可转换为字符串类型<br>由于加号只能加相同类型的东西，所以会尝试改变类型，优先会尝试改变为字符串，所以1 + ‘1’ = ‘11’<br>2.任何类型转boolean</p>
+<ul>
+<li>可以使用 boolean()，括号中为值<br><img src="http://upload-images.jianshu.io/upload_images/7921365-a61976544d7614e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="boolean的一些例子"><br>只有（空字符串、null、undefined、0、NaN ）这五个falsy值转化为布尔值是false</li>
+<li><p>任何类型取反两次则转化为布尔</p>
+<figure class="highlight plain"><figcaption><span>undefined</span><a href="//">false```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3.任何类型转number</span><br><span class="line">* Number(x) 用 Number(&apos;2&apos;) // 1</span><br><span class="line">* parseInt(x, 10)</span><br><span class="line">* parseInt(&apos;2&apos;,10) // 2  </span><br><span class="line">* 小数的情况可以用 parseFloat(&apos;1.23&apos;)  // 1.23</span><br><span class="line">* 任何类型 - 0 就可以转化为 Number </span><br><span class="line">  ```&apos;23&apos; - 0  // 23</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>任何类型取正就可以转化为Number </p>
+<figure class="highlight plain"><figcaption><span>// 23 ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">![parseInt的一些特殊例子](http://upload-images.jianshu.io/upload_images/7921365-cdb24d5f27b614ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">需要读取的进制要写明，这是JS的一个小BUG。parseInt会尽量读取数字。</span><br><span class="line"># 内存图</span><br><span class="line">先说说内存。我们知道每台计算机都有内存。一块内存插在机器上，机器开机后给浏览器分配一定的内存，浏览器给不同页面继续分配内存，每个页面又会给js分配内存。这就是分配内存的大体描述。</span><br><span class="line">这里主要考虑的是js块面。</span><br><span class="line">大概会分配成两个大区块，一边为代码区（比如 var a ），一边为数据区(&apos;1&apos;  &#123;&#125; )，代码区与数据区的内容将会产生关联。</span><br><span class="line">![内存区块](http://upload-images.jianshu.io/upload_images/7921365-c78f9e1f3e7314b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">我将重点研究的是数据区</span><br><span class="line"></span><br><span class="line">* 声明变量后第一步都要进行变量提升</span><br><span class="line">* 简单类型的值直接存储在栈内存中</span><br><span class="line">* 数字用64位浮点数表示在栈内存中（凑够64位），字符是16位</span><br><span class="line">* 复杂类型的值存储在堆内存中，堆内存有一个随机地址，这个随机地址将存储在栈内存中。</span><br><span class="line">![数据区](http://upload-images.jianshu.io/upload_images/7921365-8f150ff9545eae60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">* 如果 b = a，那么栈内存中a将覆盖到b上面。</span><br><span class="line">* 如果 o2 = o ，那么原本存储栈内存的o2地址将变成o,共同指向堆内存的64位置,对其引用。要注意的是并不是o对应的对象复制给o2,而是改变了地址指向。</span><br><span class="line">内存图很实际也很有用处。列几道题目来加深印象</span><br><span class="line">```javascript</span><br><span class="line">var a = 1</span><br><span class="line">var b = a</span><br><span class="line">b = 2</span><br><span class="line">请问 a 显示是几？</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过画内存图可以发现，b赋值为2并未影响到a，所以a仍然是1<br><img src="http://upload-images.jianshu.io/upload_images/7921365-f680d8e41a708471.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内存图1"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = &#123;<span class="attr">name</span>: <span class="string">'b'</span>&#125;</span><br><span class="line">请问现在 a.name 是多少？</span><br></pre></td></tr></table></figure>
+<p>通过画内存图可以发现，a为对象，b同样指向了a这个对象，之后b重新被赋值了一个对象，并不改变a只是给b划出了另外一块堆内存用于存储数据。所以a.name = ‘a’<br><img src="http://upload-images.jianshu.io/upload_images/7921365-890d1f343b8d52cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内存图2"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b.name = <span class="string">'b'</span></span><br><span class="line">请问现在 a.name 是多少？</span><br></pre></td></tr></table></figure>
+<p>a与b同时指向对象{name: ‘a’}，b.name = ‘b’，导致共同指向的对象改变。a.name = b’’<br><img src="http://upload-images.jianshu.io/upload_images/7921365-fa0e6f026e9b4d8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内存3"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="literal">null</span></span><br><span class="line">请问现在 a 是什么？</span><br></pre></td></tr></table></figure>
+<p>a是一个对象，b=a，共同指向一个对象，b被赋值为简单类型null，栈内存中的b被重新赋值，并不影响栈内存的a所指向的堆内存的地址。所以，a = {name: ‘a’}<br><img src="http://upload-images.jianshu.io/upload_images/7921365-dd85aa887bb547fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内存图4"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">n</span>: <span class="number">1</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">a.x = a = &#123;<span class="attr">n</span>: <span class="number">2</span>&#125;</span><br><span class="line">alert(a.x) ;</span><br><span class="line">alert(b.x);</span><br><span class="line">请问弹出值是什么？</span><br></pre></td></tr></table></figure>
+<p>说一下对应的逻辑，`a.x= a；a={n:2};可以看成先后两句语句，再结合内存图就一目了然了。（1）假设a为地址34，对应的堆内存数据就是{n: 1}，此时b = a，说明两者都被地址34所引用。（2）当a.x= a；时，地址34所对应的堆内存中新增属性x值为a 。（3）a = {n: 2}时，a的地址变更假设为54，对应的堆内存数据为{n: 2}。（4）此时(2)中x的值a变更为地址54。<br>结论：地址a已变更为54，所对应的堆内存数据中并无x这个key，所以alert(a.x)为undefined。地址b此时对应的是34地址，堆内存中有一个key为x值为地址54的对象哈希，所以alert(b.x) 为 对象<br><img src="http://upload-images.jianshu.io/upload_images/7921365-872090df9e28d470.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><ul>
+<li>通过内存图，我们得知声明的变量对应的数据是存在引用关系的，如果数据未被引用就将形成垃圾堆砌在内存中，这是肯定不被接受的。所以如果一个对象没有被引用就将被回收。<br><img src="http://upload-images.jianshu.io/upload_images/7921365-583b6fd0cee2ba18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+<li>内存泄漏<br>因为浏览器的某种bug（IE6）导致一些事件不能随单页面关闭而被回收，造成垃圾堆砌。<h1 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h1></li>
+<li>简单来说赋值后并不影响其他变量是深拷贝</li>
+<li>对于任意基本类型的简单赋值语句而言，都是深拷贝<br><img src="http://upload-images.jianshu.io/upload_images/7921365-bfacd2965258cfa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="深拷贝"></li>
+<li>通过赋值会影响其他变量的是浅拷贝</li>
+<li>对于复杂类型而言有意义<br><img src="http://upload-images.jianshu.io/upload_images/7921365-c3e09876aad1fd03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="浅拷贝"></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/01/初探css/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mammon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类型的转换"><span class="nav-number">1.</span> <span class="nav-text">类型的转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾回收"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深拷贝与浅拷贝"><span class="nav-number">3.</span> <span class="nav-text">深拷贝与浅拷贝</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mammon</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

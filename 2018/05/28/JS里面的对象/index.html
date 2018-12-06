@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="全局对象ECMAScript 规定全局对象叫做 global，但是浏览器把 window 作为全局对象（浏览器先存在的）全局对象分为两种  ECMAScript规定的1.global.parseInt2.global.parseFloat3.global.Number4.global.String5.global.Boolean6.global.Object...  浏览器私有的1.alert（弹" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:type" content="article" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:title" content="JS里的对象" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:url" content="http://yoursite.com/2018/05/28/JS里面的对象/index.html" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:site_name" content="Hexoblog" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:description" content="全局对象ECMAScript 规定全局对象叫做 global，但是浏览器把 window 作为全局对象（浏览器先存在的）全局对象分为两种  ECMAScript规定的1.global.parseInt2.global.parseFloat3.global.Number4.global.String5.global.Boolean6.global.Object...  浏览器私有的1.alert（弹" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:locale" content="zh-Hans" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-0123ae506bbbbaa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-c00e4da82d8fe427.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-5d728d2740039148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-a4ea40c8d56271ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-f9bfae2adf75cb3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-4f24c32e48932988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7921365-09d66e87a84aea42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta property="og:updated_time" content="2018-12-06T13:40:06.446Z" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta name="twitter:card" content="summary" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta name="twitter:title" content="JS里的对象" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta name="twitter:description" content="全局对象ECMAScript 规定全局对象叫做 global，但是浏览器把 window 作为全局对象（浏览器先存在的）全局对象分为两种  ECMAScript规定的1.global.parseInt2.global.parseFloat3.global.Number4.global.String5.global.Boolean6.global.Object...  浏览器私有的1.alert（弹" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7921365-0123ae506bbbbaa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" compiled="true" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/28/JS里面的对象/"/>
+
+
+
+
+
+  <title>JS里的对象 | Hexoblog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexoblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/28/JS里面的对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mammon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexoblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS里的对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T01:12:43+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="全局对象" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><a href="#全局对象" class="headerlink" title="全局对象" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></a>全局对象</h1><p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">ECMAScript 规定全局对象叫做 global，但是浏览器把 window 作为全局对象（浏览器先存在的）<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">全局对象分为两种</p>
+<ul compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<li compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">ECMAScript规定的<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1.global.parseInt<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2.global.parseFloat<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3.global.Number<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">4.global.String<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">5.global.Boolean<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">6.global.Object<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">.<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">.<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">.</p>
+</li>
+<li compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">浏览器私有的<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1.alert（弹框）<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2.prompt(用户填写)<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3.comfirm(确认)<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">4.console.log(开发者)<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">5.console.dir<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">6.window.document<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">7.window.document.createElement<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">8.window.document.getElementById<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">document的对象是由w3c规定的<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">.<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">.<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">.</p>
+</li>
+</ul>
+<h1 id="全局函数" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><a href="#全局函数" class="headerlink" title="全局函数" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></a>全局函数</h1><ol compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<li compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">Number<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var n = new Number(1) 创建一个 Number 对象<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1与 new Number(1) 的区别是什么？看内存图<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">从图中可以看到，n.toString()是不可行的，因为没有这个属性。但是为什么当使用n.toString()的时候是可以运行的呢。就是因为JS在知道你要n.toString()的时候生成一个临时的对象，假设为temp，temp = new Number(1),temp里面有很多方法比如toString()。最终就相当于temp.toString()。temp用完就没有用了。这是一个临时的转换。<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><img src="http://upload-images.jianshu.io/upload_images/7921365-0123ae506bbbbaa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内存图" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></li>
+<li compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">String<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var s = new String(‘hello’) 创建一个 String 对象<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">‘hello’ 与 new String(‘hello’) 的区别是什么？和Number一样<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">介绍一下String的相关属性<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><img src="http://upload-images.jianshu.io/upload_images/7921365-c00e4da82d8fe427.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><img src="http://upload-images.jianshu.io/upload_images/7921365-5d728d2740039148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><img src="http://upload-images.jianshu.io/upload_images/7921365-a4ea40c8d56271ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></li>
+</ol>
+<ul compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<li compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">toString()的一些常用API<figure class="highlight plain" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><figcaption compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">username    '.trim()</span><a href="//" username""="" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">```   可以去除多余空格</a></figcaption><table compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><tr compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><td class="gutter" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">4</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">5</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">6</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">7</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">8</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td><td class="code" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">```javascript</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var s1 = &apos;hello&apos;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var s2 = &apos;world&apos;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1.concat(s2)  // &quot;helloworld&quot;  </span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1 // &apos;&apos;hello&apos;&apos;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s2 // &apos;&apos;world&apos;&apos;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">concat可使两个字符串相连接</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><table compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><tr compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><td class="gutter" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">4</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">5</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">6</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td><td class="code" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="keyword" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var</span> s1 = <span class="string" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">'hello'</span></span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1.slice(<span class="number" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">0</span>,<span class="number" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1</span>)</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="comment" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">// "h"</span></span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1.slice(<span class="number" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">0</span>,<span class="number" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span>)</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="comment" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">// "hel"</span></span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">slice翻译过来是切片的意思，简单的来理解就是第一个参数表示从第几个开始，<span class="number" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">0</span>就是从头开始，<span class="number" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span>代表切<span class="number" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span>个字符串，结果是<span class="string" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">"hel"</span>。</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td></tr></table></figure>
+<figure class="highlight javascript" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><table compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><tr compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><td class="gutter" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">4</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">5</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">6</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td><td class="code" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="keyword" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var</span> s1 =  <span class="string" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">'hello'</span></span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1.replace(<span class="string" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">'e'</span>,<span class="string" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">'o'</span>)</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="comment" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">// "hollo"</span></span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="comment" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">// "hello"</span></span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">替换想要替换的字符串，但是并不改变原变量</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td></tr></table></figure>
+<ol start="3" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<li compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">Boolean</li>
+</ol>
+<p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var b = new Boolean(true) 创建一个 Boolean 对象<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">true 与 new Boolean(true) 的区别是什么？同上。</p>
+<ol start="4" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">
+<li compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">Object</li>
+</ol>
+<figure class="highlight javascript" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><table compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><tr compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><td class="gutter" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td><td class="code" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="keyword" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var</span> o1 = &#123;&#125;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="keyword" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var</span> o2 = <span class="keyword" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">new</span> <span class="built_in" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">Object</span>()</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td></tr></table></figure>
+<p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">o1 和 o2 看起来没区别。<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">虽然表示的都是空对象，但是并不是一回事，地址不同，所以这是两个不同的对象。</p>
+<h1 id="公用属性" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><a href="#公用属性" class="headerlink" title="公用属性" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></a>公用属性</h1><p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">所有对象都有 toString 和 valueOf 属性，那么我们是否有必要给每个对象一个 toString 和 valueOf 呢？<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">很明显不需要。</p>
+<p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1.object的公用属性，通过简易内存图可以看到每一个对象都有一个<figure class="highlight plain" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><figcaption compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">valueOf ，所有的object数据类型，都有一个```__proto__```指向这个公用属性方便调用里面的方法。</span></figcaption><table compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><tr compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><td class="gutter" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">4</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">5</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td><td class="code" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">```javascript</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var o1 =&#123;&#125;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var o2 = &#123;&#125;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">o1.__proto__ === o2.__proto__</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">//  true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td></tr></table></figure></p>
+<p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><img src="http://upload-images.jianshu.io/upload_images/7921365-f9bfae2adf75cb3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="object公用属性" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2.toString(16)等方法，是属于Number的公用属性，当需要用的时候，一样会有一个<figure class="highlight __proto__" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><figcaption compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">```指向这些公用属性，同时指向``` __proto__ ```里面还有一个``` __proto__ ```，将会指向Object的公用属性。方便你调用valueOf等方法。要注意的是Object和Number的toString是不同的，Number的toString()方法可以输出16位的。</span></figcaption><table compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><tr compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><td class="gutter" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">1</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">2</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">3</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">4</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">5</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">6</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">7</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">8</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">9</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">10</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">11</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">12</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">13</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">14</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">15</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">16</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">17</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">18</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">19</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">20</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">21</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">22</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">23</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">24</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">25</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">26</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td><td class="code" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><pre compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">![Number的公用属性](http://upload-images.jianshu.io/upload_images/7921365-705028a265fa8ee2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">![Number的公用属性](http://upload-images.jianshu.io/upload_images/7921365-3790f3cd554a5872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">---------------------------------------------------------------------------------</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">![总结图](http://upload-images.jianshu.io/upload_images/7921365-5cacb412fdf359ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">总结：JS 的做法是把 toString 和 valueOf 放在一个对象里（暂且叫做公用属性组成的对象）然后让每一个对象的``` __proto__ ```存储这个「公用属性组成的对象」的地址。Object的公有属性是所有对象的公有属性。</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">```javascript</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var s1 = new Number()</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1.__proto__ === Number.prototype</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">// true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">``</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">可以推断出</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">```javascript`</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var s1 = new Number()</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">s1.__proto__ === Number.prototype</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"> //    true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var w1 = new Boolean()</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">w1.__proto__ === Boolean.prototype</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">//     true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var o1 = &#123;&#125;</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">o1.__proto__ === Object.prototype</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"> //    true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">w1.__proto__.__proto__ === Object.prototype</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">//     true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">Number.prototype.__proto__ === Object.prototype</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><span class="line" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">//     true</span><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></pre></td></tr></table></figure></p>
+<p compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">公有属性之间的关系<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><img src="http://upload-images.jianshu.io/upload_images/7921365-4f24c32e48932988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="总结1" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">重点：<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">var 对象 = new 函数()<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">对象.<strong compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]">proto</strong> === 函数.prototype<br compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"><img src="http://upload-images.jianshu.io/upload_images/7921365-09d66e87a84aea42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="总结2" compiled="true" keywords="undefined" lexemesRe="/\w+/gm" relevance="1" contains="" terminators="[object Object]"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/18/JS里的类型/" rel="next" title="JS里的类型">
+                <i class="fa fa-chevron-left"></i> JS里的类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mammon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#全局对象"><span class="nav-number">1.</span> <span class="nav-text">全局对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全局函数"><span class="nav-number">2.</span> <span class="nav-text">全局函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公用属性"><span class="nav-number">3.</span> <span class="nav-text">公用属性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mammon</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
